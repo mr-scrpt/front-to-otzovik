@@ -1,5 +1,4 @@
 import request from "../../utils/request";
-import { longStackSupport } from "q";
 
 export const getRegionList = async () => {
   try {
@@ -19,7 +18,6 @@ export const addRegion = async ({ name, flag }) => {
       method: "POST",
       data: { name, flag }
     });
-    console.log(res);
 
     //res.status !== 200 ? console.log(445) : res.json();
   } catch (e) {

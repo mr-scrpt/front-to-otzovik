@@ -24,9 +24,8 @@ const Notification = props => {
       </button>
       {notification.length
         ? notification.map(({ text, id, variant }, idx) => (
-            <div key={id}>
+            <div key={id} className={variant}>
               {text}
-              {variant}
               <button
                 onClick={() => {
                   closeNotification(id);

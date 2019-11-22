@@ -1,8 +1,7 @@
 import axios from "axios";
-
 const baseURL = `${process.env.HOST}${process.env.API}`;
 const instance = axios.create({ baseURL });
-
+import { popupDispatch } from "./popupDispatch";
 const request = ({ url, method, headers, data }) =>
   new Promise(async (resolve, reject) => {
     try {
@@ -21,17 +20,20 @@ const request = ({ url, method, headers, data }) =>
         switch (eStatus) {
           case 401:
           case 403:
+          case 404:
+            popupDispatch("Запрашиваемый ресурс не найден!");
             return reject(eResponse);
           case 500:
           case 502:
           case 503:
-            console.log("Сделать всплывающую ошибку");
-            return reject({ details: "Unknown error" });
+            popupDispatch("Ошибка сервера!");
+            return reject({ details: "Ошибка сервера" });
           default:
+            popupDispatch(eResponse.message);
             return reject(eResponse);
         }
       } else {
-        console.log(e.message);
+        popupDispatch("Неизвестная ошибка!");
         return reject(e.message);
       }
     }

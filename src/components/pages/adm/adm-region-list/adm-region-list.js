@@ -4,6 +4,7 @@ import {
   fetchRegionsListRequest,
   fetchRegionAddRequest
 } from "../../../../modules/regions";
+
 import RegionForm from "../../../forms/region-form";
 import Notification from "../../../notification";
 const AdmRegionList = props => {
@@ -18,7 +19,7 @@ const AdmRegionList = props => {
     regionsList: { data: list }
   } = props;
 
-  const { fetchRegionAddRequest } = props;
+  const { fetchRegionAddRequest, openNotification } = props;
   return (
     <>
       <ul>

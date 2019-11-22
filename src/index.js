@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import { Provider } from "react-redux";
 import createStore from "./store";
-const store = createStore();
+export const store = createStore();
 
 ReactDOM.render(
   <Provider store={store}>
