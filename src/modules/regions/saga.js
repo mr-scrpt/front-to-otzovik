@@ -13,6 +13,8 @@ import {
   fetchRegionAddRequest
 } from "./actions";
 
+//import { openNotification } from "../notification";
+
 import { getRegionList, addRegion } from "./api";
 
 function* fetchWatcher() {

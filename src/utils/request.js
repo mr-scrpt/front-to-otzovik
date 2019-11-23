@@ -6,6 +6,7 @@ const request = ({ url, method, headers, data }) =>
   new Promise(async (resolve, reject) => {
     try {
       const result = await instance({ url, method, headers, data });
+
       resolve(result);
     } catch (e) {
       if (e.response) {

@@ -1,16 +1,8 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import AdmMain from "../pages/adm/adm-main";
-import AdmRegionList from "../pages/adm/adm-region-list";
+import AdmRegion from "../pages/adm/adm-region";
 import AdmNavMainList from "../navigation/adm-nav-main-list";
-
-const list = [
-  { path: "", title: "Главная" },
-  { path: "users", title: "Пользователи" },
-  { path: "regions", title: "Регионы" },
-  { path: "persons", title: "Персоны" },
-  { path: "tails", title: "Истории" }
-];
 
 const AdminSide = ({ match }) => {
   const { path } = match;
@@ -20,10 +12,10 @@ const AdminSide = ({ match }) => {
       <Route path={`${path}`} component={AdmNavMainList} />
       <Switch>
         <Route path={`${path}`} exact component={AdmMain} />
-        <Route path={`${path}/regions`} component={AdmRegionList} />
-        <Route path={`${path}/users`} render={() => <div>Регионы</div>} />
-        <Route path={`${path}/persons`} render={() => <div>Регионы</div>} />
-        <Route path={`${path}/tails`} render={() => <div>Регионы</div>} />
+        <Route path={`${path}/regions`} component={AdmRegion} />
+        <Route path={`${path}/users`} render={() => <div>Юзеры</div>} />
+        <Route path={`${path}/persons`} render={() => <div>Персоны</div>} />
+        <Route path={`${path}/tails`} render={() => <div>Истории</div>} />
         }/>
       </Switch>
     </>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
   fetchRegionsListRequest,
@@ -6,33 +6,21 @@ import {
 } from "../../../../modules/regions";
 
 import RegionForm from "../../../forms/region-form";
-import Notification from "../../../notification";
-const AdmRegionList = props => {
-  const [regions, setRegions] = useState([]);
-
+import RegionList from "../../../adm/region-list";
+const AdmRegion = props => {
   useEffect(() => {
     const { fetchRegionsListRequest } = props;
     fetchRegionsListRequest();
-    setRegions();
   }, []);
   const {
     regionsList: { data: list }
   } = props;
 
-  const { fetchRegionAddRequest, openNotification } = props;
+  const { fetchRegionAddRequest } = props;
   return (
     <>
-      <ul>
-        <h1>title</h1>
-        {list &&
-          list.map(({ name, flag, alias, _id }) => (
-            <li key={_id}>
-              Имя: {name}, Флаг: {flag}, алиас: {alias}
-            </li>
-          ))}
-      </ul>
+      <RegionList list={list} />
       <RegionForm actionSubmit={fetchRegionAddRequest} />
-      <Notification />
     </>
   );
 };
@@ -45,4 +33,4 @@ const mapDispatchToProps = {
   fetchRegionAddRequest
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdmRegionList);
+export default connect(mapStateToProps, mapDispatchToProps)(AdmRegion);

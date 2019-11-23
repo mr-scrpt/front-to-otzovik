@@ -1,26 +1,37 @@
 import React, { useState, useEffect } from "react";
-import { reduxForm, Field, formValueSelector, formValues } from "redux-form";
+import { reduxForm, Field, formValueSelector } from "redux-form";
 import { connect } from "react-redux";
-import fieldStandart from "../field-standart";
+import FieldStandart from "../field-standart";
+import FieldFileStandart from "../field-file-standart";
 import validatorStandart from "../validator-standart";
 
 let RegionForm = ({ handleSubmit, name, flag, actionSubmit }) => {
-  const [region, setRegion] = useState({ name });
+  const [region, setRegion] = useState({ name: "" });
 
   useEffect(() => {
-    setRegion({ name, flag: "flag.jpg" }); //Флаг нельзя передать строкой, это бинарные данные
-  }, [name]);
+    setRegion({ name, flag }); //Флаг нельзя передать строкой, это бинарные данные
+  }, [name, flag]);
 
   return (
-    <form onSubmit={handleSubmit(() => actionSubmit(region))}>
-      <h1>{region.name}</h1>
+    <form
+      onSubmit={handleSubmit(() => {
+        actionSubmit(region);
+      })}
+    >
       <Field
         name="name"
         type="text"
-        id="first-name"
         placeholder="Название региона"
-        component={fieldStandart}
+        component={FieldStandart}
       />
+      <Field name="flag" component={FieldFileStandart} />
+
+      {/* <Field
+        name="flag"
+        type="text"
+        placeholder="Герб региона"
+        component={fieldStandart}
+      /> */}
 
       <button type="submit">Submit</button>
     </form>
@@ -29,18 +40,17 @@ let RegionForm = ({ handleSubmit, name, flag, actionSubmit }) => {
 
 RegionForm = reduxForm({
   form: "selectingFormValues",
+  multipartForm: true,
   validate: validatorStandart
 })(RegionForm);
 
 const selector = formValueSelector("selectingFormValues");
 
 const mapStateToProps = state => ({
-  name: selector(state, "name")
+  name: selector(state, "name"),
+  flag: selector(state, "flag")
 });
 
-/* const mapDispatchToProps = {
-  fetchRegionAddRequest
-}; */
 RegionForm = connect(mapStateToProps)(RegionForm);
 
 export default RegionForm;

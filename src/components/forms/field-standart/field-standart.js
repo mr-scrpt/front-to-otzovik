@@ -1,6 +1,6 @@
 import React from "react";
 
-const fieldStandart = ({
+const FieldStandart = ({
   input,
   type,
   placeholder,
@@ -20,4 +20,4 @@ const fieldStandart = ({
     </div>
   );
 };
-export default fieldStandart;
+export default FieldStandart;

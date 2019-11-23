@@ -1,2 +1,2 @@
-import fieldStandart from "./field-standart";
-export default fieldStandart;
+import FieldStandart from "./field-standart";
+export default FieldStandart;
