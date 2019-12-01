@@ -1,5 +1,21 @@
 import request from "../../utils/request";
-import axios from "axios";
+import { popupDispatch } from "../../utils/popupDispatch";
+
+const regionData = ({ name, flag }) => {
+  console.log(name, flag);
+
+  const data = new FormData();
+  if (flag && flag.file instanceof File) {
+    data.append("flag", flag.file);
+  } else {
+    data.append("flag", "");
+  }
+
+  data.append("name", name);
+
+  return data;
+};
+
 export const getRegionList = async () => {
   try {
     return await request({
@@ -11,12 +27,9 @@ export const getRegionList = async () => {
   }
 };
 
-export const addRegion = async ({ name, flag }) => {
-  const data = new FormData();
-
-  data.append("name", name);
-  data.append("flag", flag.file);
-
+export const addRegion = async region => {
+  console.log(region);
+  const data = regionData(region);
   try {
     const res = await request({
       url: "/regions",
@@ -24,11 +37,35 @@ export const addRegion = async ({ name, flag }) => {
       headers: {
         "Content-Type": "multipart/form-data"
       },
-      data: data
+      data
     });
 
     if (res.status === 200) {
       popupDispatch("Регион успешно создан", "success");
+      return res.data;
+    }
+  } catch (e) {
+    console.log(e);
+    return e;
+  }
+};
+
+export const updRegion = async region => {
+  const data = regionData(region);
+  console.log(region);
+
+  try {
+    const res = await request({
+      url: `/regions/${region.id}`,
+      method: "PATCH",
+      headers: {
+        "Content-Type": "multipart/form-data"
+      },
+      data: data
+    });
+
+    if (res.status === 200) {
+      popupDispatch("Регион успешно обновлен", "success");
       return res.data;
     }
   } catch (e) {

@@ -5,11 +5,13 @@ const FieldStandart = ({
   type,
   placeholder,
   myClass,
+  toChange,
   meta: { touched, error },
+
   ...rest
 }) => {
   return (
-    <div>
+    <>
       <input
         {...input}
         placeholder={placeholder}
@@ -17,7 +19,7 @@ const FieldStandart = ({
         className={myClass}
       />
       {touched && error && <p style={{ color: "red" }}>{error}</p>}
-    </div>
+    </>
   );
 };
 export default FieldStandart;

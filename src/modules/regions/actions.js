@@ -19,3 +19,13 @@ export const fetchRegionAddSuccess = createAction(
 export const fetchRegionAddFailure = createAction(
   "REGION/FETCH_REGION_ADD_FAILURE"
 );
+
+export const fetchRegionUpdRequest = createAction(
+  "REGION/FETCH_REGION_UPD_REQUEST"
+);
+export const fetchRegionUpdSuccess = createAction(
+  "REGION/FETCH_REGION_UPD_SUCCESS"
+);
+export const fetchRegionUpdFailure = createAction(
+  "REGION/FETCH_REGION_UPD_FAILURE"
+);

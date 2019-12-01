@@ -10,16 +10,16 @@ import {
   fetchRegionsListRequest,
   fetchRegionsListSuccess,
   fetchRegionsListFailure,
-  fetchRegionAddRequest
+  fetchRegionAddRequest,
+  fetchRegionUpdRequest
 } from "./actions";
 
-//import { openNotification } from "../notification";
-
-import { getRegionList, addRegion } from "./api";
+import { getRegionList, addRegion, updRegion } from "./api";
 
 function* fetchWatcher() {
   yield takeEvery(fetchRegionsListRequest, getRegionsBD);
   yield takeEvery(fetchRegionAddRequest, addRegionBD);
+  yield takeEvery(fetchRegionUpdRequest, updRegionBD);
 }
 
 export function* getRegionsBD() {
@@ -29,6 +29,11 @@ export function* getRegionsBD() {
 
 export function* addRegionBD({ payload }) {
   yield addRegion(payload);
+  yield getRegionsBD();
+}
+
+export function* updRegionBD({ payload }) {
+  yield updRegion(payload);
   yield getRegionsBD();
 }
 
