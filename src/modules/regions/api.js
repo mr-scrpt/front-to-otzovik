@@ -52,7 +52,6 @@ export const addRegion = async region => {
 
 export const updRegion = async region => {
   const data = regionData(region);
-  console.log(region);
 
   try {
     const res = await request({

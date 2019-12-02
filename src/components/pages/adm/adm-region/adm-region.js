@@ -16,7 +16,7 @@ const AdmRegion = props => {
 
   return (
     <>
-      <RegionList list={list} />
+      {list && <RegionList list={list} />}
       <RegionForm />
     </>
   );

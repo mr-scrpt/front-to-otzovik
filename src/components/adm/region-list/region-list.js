@@ -2,27 +2,36 @@ import React, { useState, useEffect } from "react";
 import RegionListItem from "../region-list-item";
 import RegionListItemEdit from "../../forms/region-list-item-edit";
 const RegionList = ({ list }) => {
-  const [region, setRegion] = useState();
+  const [regions, setRegions] = useState();
   useEffect(() => {
-    setRegion(list);
-  }, [list]);
+    const listInitial = list.map(item => ({ ...item, edit: false }));
+    setRegions(listInitial);
+  }, [list]); // [list] или просто []
+
   const editItem = id => {
-    const regionToEdit =
-      region &&
-      region.map(item => {
-        item.mode === "edit" && resetItem(item._id);
-        item.mode = item._id === id ? "edit" : "standart";
+    const regionClone = regions.map(item => ({ ...item, edit: false }));
+    const regionIndex = regionClone.findIndex(elem => elem._id === id);
+    const regionOld = regions[regionIndex];
 
-        return item;
-      });
+    const regionNew = {
+      ...regionOld,
+      edit: !regionOld.edit
+    };
 
-    setRegion(regionToEdit);
+    const updateRegion = [
+      ...regionClone.slice(0, regionIndex),
+      regionNew,
+      ...regionClone.slice(regionIndex + 1)
+    ];
+
+    setRegions(updateRegion);
   };
   const applyItem = id => {
     const regionToApply =
-      region &&
-      region.map(item => {
-        item._id === id && (item.mode = "standart");
+      regions &&
+      regions.map(item => {
+        //item._id === id && (item.mode = "standart");
+        item._id === id && !item.edit;
         return item;
       });
     setRegion(regionToApply);
@@ -30,25 +39,22 @@ const RegionList = ({ list }) => {
 
   const resetItem = id => {
     const regionToReset =
-      region &&
-      region.map(item => {
+      regions &&
+      regions.map(item => {
         item._id === id && (item.mode = "standart");
         return item;
       });
-    setRegion(regionToReset);
+    setRegions(regionToReset);
   };
+
   return (
     <ul className="list region-list">
-      {region &&
-        region.map(item => (
+      {regions && regions.map(item => <div key={item._id}>{item.name}</div>)}
+      {regions &&
+        regions.map(item => (
           <React.Fragment key={item._id}>
-            {item.mode === "edit" ? (
-              <RegionListItemEdit
-                item={item}
-                onApply={applyItem}
-                onReset={resetItem}
-                defaultValue="ddd"
-              />
+            {item.edit ? (
+              <RegionListItemEdit item={item} onEdit={editItem} />
             ) : (
               <RegionListItem item={item} onEdit={editItem} />
             )}

@@ -1,6 +1,7 @@
 import React from "react";
-import { Route, Link, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import AdminSide from "../admin-side";
+import { connect } from "react-redux";
 
 const App = () => {
   return (
@@ -12,4 +13,7 @@ const App = () => {
     </>
   );
 };
-export default App;
+const mapStateToProps = state => ({
+  //name: state.
+});
+export default connect(mapStateToProps)(App);
