@@ -4,12 +4,17 @@ import { connect } from "react-redux";
 
 import FieldStandart from "../field-standart";
 import FieldFileStandart from "../field-file-standart";
-import { fetchRegionUpdRequest } from "../../../modules/regions";
+import {
+  fetchRegionUpdRequest,
+  fetchRegionDelRequest
+} from "../../../modules/regions";
 
 let RegionListItemEdit = ({
   handleSubmit,
   onEdit,
+  onDelete,
   fetchRegionUpdRequest,
+  fetchRegionDelRequest,
   item,
   nameChange,
   flagChange,
@@ -48,6 +53,14 @@ let RegionListItemEdit = ({
 
         <button type="submit">Применить</button>
         <button type="reset">Отменить</button>
+        <button
+          type="button"
+          onClick={() => {
+            fetchRegionDelRequest(item._id);
+          }}
+        >
+          Удалить
+        </button>
       </form>
     </li>
   );
@@ -71,7 +84,8 @@ const mapStateToProps = (state, { item: { name, alias } }) => ({
   } */
 });
 const mapDispatchToProps = {
-  fetchRegionUpdRequest
+  fetchRegionUpdRequest,
+  fetchRegionDelRequest
 };
 
 RegionListItemEdit = connect(

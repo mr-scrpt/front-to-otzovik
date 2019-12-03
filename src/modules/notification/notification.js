@@ -1,8 +1,7 @@
-import { combineReducers } from "redux";
 import { handleActions } from "redux-actions";
 import { openNotification, closeNotification } from "./actions";
 
-export const notificationSelector = state => state.notification;
+//export const notificationSelector = state => state.notification;
 
 const notification = handleActions(
   {

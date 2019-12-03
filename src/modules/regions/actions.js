@@ -1,5 +1,5 @@
 import { createAction } from "redux-actions";
-
+// LOAD
 export const fetchRegionsListRequest = createAction(
   "REGION/FETCH_REGIONS_LIST_REQUEST"
 );
@@ -10,22 +10,17 @@ export const fetchRegionsListFailure = createAction(
   "REGION/FETCH_REGIONS_LIST_FAILURE"
 );
 
+// ADD
 export const fetchRegionAddRequest = createAction(
   "REGION/FETCH_REGION_ADD_REQUEST"
 );
-export const fetchRegionAddSuccess = createAction(
-  "REGION/FETCH_REGION_ADD_SUCCESS"
-);
-export const fetchRegionAddFailure = createAction(
-  "REGION/FETCH_REGION_ADD_FAILURE"
-);
 
+// UPDATE
 export const fetchRegionUpdRequest = createAction(
   "REGION/FETCH_REGION_UPD_REQUEST"
 );
-export const fetchRegionUpdSuccess = createAction(
-  "REGION/FETCH_REGION_UPD_SUCCESS"
-);
-export const fetchRegionUpdFailure = createAction(
-  "REGION/FETCH_REGION_UPD_FAILURE"
+
+// DELETE
+export const fetchRegionDelRequest = createAction(
+  "REGION/FETCH_REGION_DEL_REQUEST"
 );

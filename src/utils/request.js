@@ -6,7 +6,6 @@ const request = ({ url, method, headers, data }) =>
   new Promise(async (resolve, reject) => {
     try {
       const result = await instance({ url, method, headers, data });
-
       resolve(result);
     } catch (e) {
       if (e.response) {
@@ -22,19 +21,19 @@ const request = ({ url, method, headers, data }) =>
           case 401:
           case 403:
           case 404:
-            popupDispatch("Запрашиваемый ресурс не найден!");
+            //popupDispatch("Запрашиваемый ресурс не найден!");
             return reject(eResponse);
           case 500:
           case 502:
           case 503:
-            popupDispatch("Ошибка сервера!");
+            //popupDispatch("Ошибка сервера!");
             return reject({ details: "Ошибка сервера" });
           default:
-            popupDispatch(eResponse.message);
+            //popupDispatch(eResponse.message);
             return reject(eResponse);
         }
       } else {
-        popupDispatch("Неизвестная ошибка!");
+        //popupDispatch("Неизвестная ошибка сервера!");
         return reject(e.message);
       }
     }

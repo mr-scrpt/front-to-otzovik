@@ -1,9 +1,7 @@
 import request from "../../utils/request";
+import errorHandler from "../../utils/errorHandler";
 import { popupDispatch } from "../../utils/popupDispatch";
-
 const regionData = ({ name, flag }) => {
-  console.log(name, flag);
-
   const data = new FormData();
   if (flag && flag.file instanceof File) {
     data.append("flag", flag.file);
@@ -23,12 +21,11 @@ export const getRegionList = async () => {
       method: "GET"
     });
   } catch (e) {
-    return e;
+    errorHandler(e);
   }
 };
 
 export const addRegion = async region => {
-  console.log(region);
   const data = regionData(region);
   try {
     const res = await request({
@@ -45,8 +42,7 @@ export const addRegion = async region => {
       return res.data;
     }
   } catch (e) {
-    console.log(e);
-    return e;
+    errorHandler(e);
   }
 };
 
@@ -68,7 +64,22 @@ export const updRegion = async region => {
       return res.data;
     }
   } catch (e) {
-    console.log(e);
-    return e;
+    errorHandler(e);
+  }
+};
+
+export const deleteRegion = async id => {
+  try {
+    const res = await request({
+      url: `/regions/${id}`,
+      method: "DELETE"
+    });
+
+    if (res.status === 200) {
+      popupDispatch("Регион успешно удален", "success");
+      return res.data;
+    }
+  } catch (e) {
+    errorHandler(e);
   }
 };

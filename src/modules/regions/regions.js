@@ -16,23 +16,23 @@ const list = handleActions(
 
 const error = handleActions(
   {
-    [fetchRegionsListRequest]: () => false,
-    [fetchRegionsListSuccess]: () => (_, action) => action.payload,
-    [fetchRegionsListFailure]: () => true
+    [fetchRegionsListRequest]: () => ({ status: 200, message: "ok" }),
+    [fetchRegionsListSuccess]: () => ({ status: 200, message: "ok" }),
+    [fetchRegionsListFailure]: (_, action) => ({ ...action.payload })
   },
-  false
+  { status: 200, message: "ok" }
 );
 
-const loading = handleActions(
+/* const loading = handleActions(
   {
     [fetchRegionsListRequest]: () => true,
     [fetchRegionsListSuccess]: () => false,
     [fetchRegionsListFailure]: () => false
   },
   false
-);
+); */
 export default combineReducers({
   list,
-  error,
-  loading
+  error
+  //loading
 });

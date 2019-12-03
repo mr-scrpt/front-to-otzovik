@@ -15,13 +15,6 @@ const Notification = props => {
 
   return (
     <div>
-      <button
-        onClick={() => {
-          openNotification({ text: "test", variant: "myVar" });
-        }}
-      >
-        Ошибка
-      </button>
       {notification.length
         ? notification.map(({ text, id, variant }, idx) => (
             <div key={id} className={variant}>

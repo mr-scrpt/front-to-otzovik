@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import RegionListItem from "../region-list-item";
+import RegionListItem from "../../forms/region-list-item";
 import RegionListItemEdit from "../../forms/region-list-item-edit";
+
 const RegionList = ({ list }) => {
   const [regions, setRegions] = useState();
+
   useEffect(() => {
     const listInitial = list.map(item => ({ ...item, edit: false }));
     setRegions(listInitial);
@@ -26,27 +28,7 @@ const RegionList = ({ list }) => {
 
     setRegions(updateRegion);
   };
-  const applyItem = id => {
-    const regionToApply =
-      regions &&
-      regions.map(item => {
-        //item._id === id && (item.mode = "standart");
-        item._id === id && !item.edit;
-        return item;
-      });
-    setRegion(regionToApply);
-  };
-
-  const resetItem = id => {
-    const regionToReset =
-      regions &&
-      regions.map(item => {
-        item._id === id && (item.mode = "standart");
-        return item;
-      });
-    setRegions(regionToReset);
-  };
-
+  const onDelete = () => {};
   return (
     <ul className="list region-list">
       {regions && regions.map(item => <div key={item._id}>{item.name}</div>)}
@@ -54,7 +36,11 @@ const RegionList = ({ list }) => {
         regions.map(item => (
           <React.Fragment key={item._id}>
             {item.edit ? (
-              <RegionListItemEdit item={item} onEdit={editItem} />
+              <RegionListItemEdit
+                item={item}
+                onEdit={editItem}
+                onDelete={onDelete}
+              />
             ) : (
               <RegionListItem item={item} onEdit={editItem} />
             )}
@@ -63,4 +49,5 @@ const RegionList = ({ list }) => {
     </ul>
   );
 };
+
 export default RegionList;
