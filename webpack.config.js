@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const dotenv = require("dotenv");
-
+const path = require("path");
 const webpack = require("webpack");
 const env = dotenv.config().parsed;
 const envKeys = Object.keys(env).reduce((prev, next) => {
@@ -95,7 +95,17 @@ module.exports = (env = {}) => {
         }
       ]
     },
-    plugins: getPlugins()
+    plugins: getPlugins(),
+    resolve: {
+      alias: {
+        "~": path.resolve(__dirname, "src"),
+        "~c": path.resolve(__dirname, "src/components/"),
+        "~m": path.resolve(__dirname, "src/modules/"),
+        "~u": path.resolve(__dirname, "src/utils/"),
+        "~p": path.resolve(__dirname, "src/components/pages/"),
+        "~f": path.resolve(__dirname, "src/components/forms/")
+      }
+    }
   };
 };
 

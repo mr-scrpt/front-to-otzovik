@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import AdmMain from "../pages/adm/adm-main";
-import AdmRegion from "../pages/adm/adm-region";
+import AdmMain from "~p/adm/adm-main";
+import AdmRegion from "~p/adm/adm-region";
 import AdmNavMainList from "../navigation/adm-nav-main-list";
 
 const AdminSide = ({ match }) => {

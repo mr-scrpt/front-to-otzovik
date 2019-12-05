@@ -1,22 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, memo } from "react";
 import { connect } from "react-redux";
-import { fetchRegionsListRequest } from "../../../../modules/regions";
-
-import RegionForm from "../../../forms/region-form";
-
-import RegionList from "../../../adm/region-list";
+import { fetchRegionsListRequest } from "~m/regions";
+import RegionForm from "~f/region-form";
+import RegionList from "~c/adm/region-list";
 const AdmRegion = props => {
   useEffect(() => {
     const { fetchRegionsListRequest } = props;
     fetchRegionsListRequest();
   }, []);
+  useEffect(() => {
+    console.log("render page");
+  });
   const {
-    regionsList: { data: list }
+    regionsList: { data: list = [] }
   } = props;
 
   return (
     <>
-      {list && <RegionList list={list} />}
+      {<RegionList list={list} />}
       <RegionForm />
     </>
   );

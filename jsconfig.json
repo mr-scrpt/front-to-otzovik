@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "~/*": ["src/*"],
+      "~c/*": ["src/components/*"],
+      "~m/*": ["src/modules/*"],
+      "~u/*": ["src/utils/*"],
+      "~p/*": ["src/components/pages/*"],
+      "~f/*": ["src/components/forms/*"],
+
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}

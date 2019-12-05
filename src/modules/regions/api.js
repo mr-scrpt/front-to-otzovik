@@ -1,6 +1,6 @@
-import request from "../../utils/request";
-import errorHandler from "../../utils/errorHandler";
-import { popupDispatch } from "../../utils/popupDispatch";
+import request from "~/utils/request";
+import errorHandler from "~/utils/errorHandler";
+import { popupDispatch } from "~/utils/popupDispatch";
 const regionData = ({ name, flag }) => {
   const data = new FormData();
   if (flag && flag.file instanceof File) {

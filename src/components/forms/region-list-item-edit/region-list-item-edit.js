@@ -1,18 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { reduxForm, Field, formValueSelector, initialize } from "redux-form";
+import React, { useState, useEffect, memo } from "react";
+import { reduxForm, Field, formValueSelector } from "redux-form";
 import { connect } from "react-redux";
 
-import FieldStandart from "../field-standart";
-import FieldFileStandart from "../field-file-standart";
-import {
-  fetchRegionUpdRequest,
-  fetchRegionDelRequest
-} from "../../../modules/regions";
+import FieldStandart from "~f/field-standart";
+import FieldFileStandart from "~f/field-file-standart";
+import { fetchRegionUpdRequest, fetchRegionDelRequest } from "~m/regions";
 
 let RegionListItemEdit = ({
   handleSubmit,
   onEdit,
-  onDelete,
   fetchRegionUpdRequest,
   fetchRegionDelRequest,
   item,
@@ -93,4 +89,4 @@ RegionListItemEdit = connect(
   mapDispatchToProps
 )(RegionListItemEdit);
 
-export default RegionListItemEdit;
+export default memo(RegionListItemEdit);
