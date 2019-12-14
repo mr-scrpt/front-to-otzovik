@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import {
-  openNotification,
+  //openNotification,
   closeNotification
 } from "../../modules/notification";
 
@@ -10,8 +10,25 @@ const Notification = props => {
   useEffect(() => {
     const { notificationList } = props;
     setNotification(notificationList);
-  });
-  const { openNotification, closeNotification } = props;
+    const timeoutsQueue = [];
+
+    notificationList.map(({ id }) => {
+      const timeout = setTimeout(() => {
+        closeNotification(id);
+      }, 5000);
+
+      timeoutsQueue.push(timeout);
+    });
+
+    return () => {
+      timeoutsQueue.length &&
+        timeoutsQueue.map(timeout => clearTimeout(timeout));
+    };
+  }, [props.notificationList.length]);
+  const {
+    //openNotification,
+    closeNotification
+  } = props;
 
   return (
     <div>
@@ -37,7 +54,7 @@ const mapStateToProps = ({ notification }) => ({
   notificationList: notification
 });
 const mapDispatchToProps = {
-  openNotification,
+  //openNotification,
   closeNotification
 };
 

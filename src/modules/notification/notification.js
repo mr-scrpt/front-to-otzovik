@@ -1,6 +1,6 @@
 import { handleActions } from "redux-actions";
 import { openNotification, closeNotification } from "./actions";
-
+import uuid from "react-uuid";
 //export const notificationSelector = state => state.notification;
 
 const notification = handleActions(
@@ -9,7 +9,8 @@ const notification = handleActions(
       const { text, variant } = action.payload;
       return [
         ...state,
-        { text, variant, id: state.length + 1, isActive: !state.length }
+        //{ text, variant, id: state.length + 1, isActive: !state.length }
+        { text, variant, id: uuid(), isActive: !state.length }
       ];
     },
     [closeNotification]: (state, action) => {

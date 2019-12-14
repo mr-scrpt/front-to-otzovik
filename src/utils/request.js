@@ -1,11 +1,16 @@
 import axios from "axios";
 const baseURL = `${process.env.HOST}${process.env.API}`;
 const instance = axios.create({ baseURL });
-import { popupDispatch } from "./popupDispatch";
+
 const request = ({ url, method, headers, data }) =>
   new Promise(async (resolve, reject) => {
     try {
       const result = await instance({ url, method, headers, data });
+      if (result.status !== 200) {
+        throw new Error(result);
+      }
+      console.log(result);
+
       resolve(result);
     } catch (e) {
       if (e.response) {

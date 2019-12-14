@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 const RegionListItem = ({ item, onEdit }) => {
   const { name, flag, alias, _id } = item;
@@ -6,6 +6,8 @@ const RegionListItem = ({ item, onEdit }) => {
   const edit = () => {
     onEdit(_id);
   };
+  console.log("rerender");
+
   return (
     <li className="list__item region-list__item">
       <input type="text" name="name" value={name} readOnly disabled />
@@ -18,4 +20,4 @@ const RegionListItem = ({ item, onEdit }) => {
   );
 };
 
-export default memo(RegionListItem);
+export default RegionListItem;

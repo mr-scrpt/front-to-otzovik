@@ -1,4 +1,4 @@
-import React, { useEffect, memo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 import { fetchRegionsListRequest } from "~m/regions";
 import RegionForm from "~f/region-form";
@@ -11,20 +11,19 @@ const AdmRegion = props => {
   useEffect(() => {
     console.log("render page");
   });
-  const {
-    regionsList: { data: list = [] }
-  } = props;
+  const { regionsList = [] } = props;
 
   return (
     <>
-      {<RegionList list={list} />}
+      {regionsList.length && <RegionList list={regionsList} />}
+
       <RegionForm />
     </>
   );
 };
 
 const mapStateToProps = ({ regions }) => ({
-  regionsList: regions.list
+  regionsList: regions.list.data
 });
 const mapDispatchToProps = {
   fetchRegionsListRequest

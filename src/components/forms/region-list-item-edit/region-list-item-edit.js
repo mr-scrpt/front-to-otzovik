@@ -1,14 +1,16 @@
-import React, { useState, useEffect, memo } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { reduxForm, Field, formValueSelector } from "redux-form";
 import { connect } from "react-redux";
 
 import FieldStandart from "~f/field-standart";
 import FieldFileStandart from "~f/field-file-standart";
+import validatorStandart from "~f/validator-standart";
 import { fetchRegionUpdRequest, fetchRegionDelRequest } from "~m/regions";
 
 let RegionListItemEdit = ({
   handleSubmit,
   onEdit,
+  onReset,
   fetchRegionUpdRequest,
   fetchRegionDelRequest,
   item,
@@ -21,11 +23,15 @@ let RegionListItemEdit = ({
 
   useEffect(() => {
     initialize({ name: item.name });
-    //setRegion({ name: item.name, flag: item.flag, id: item._id });
   }, [item, item.name]);
 
   useEffect(() => {
-    setRegion({ ...item, name: nameChange, flag: flagChange, id: item._id });
+    setRegion(region => ({
+      ...region,
+      name: nameChange,
+      flag: flagChange,
+      id: item._id
+    }));
   }, [nameChange, aliasChange, flagChange]);
 
   return (
@@ -36,7 +42,7 @@ let RegionListItemEdit = ({
           fetchRegionUpdRequest(region);
         })}
         onReset={() => {
-          onEdit(item._id);
+          onReset(item._id);
         }}
       >
         <Field
@@ -63,8 +69,10 @@ let RegionListItemEdit = ({
 };
 RegionListItemEdit = reduxForm({
   form: "editRegionRow",
-  enableReinitialize: true,
+  validate: validatorStandart,
+  //enableReinitialize: true,
   multipartForm: true
+
   //destroyOnUnmount: true
 })(RegionListItemEdit);
 
@@ -89,4 +97,4 @@ RegionListItemEdit = connect(
   mapDispatchToProps
 )(RegionListItemEdit);
 
-export default memo(RegionListItemEdit);
+export default RegionListItemEdit;

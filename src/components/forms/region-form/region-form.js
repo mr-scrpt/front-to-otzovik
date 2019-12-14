@@ -11,6 +11,7 @@ import FieldStandart from "~f/field-standart";
 import FieldFileStandart from "~f/field-file-standart";
 import validatorStandart from "~f/validator-standart";
 import { fetchRegionAddRequest } from "~m/regions/";
+
 let RegionForm = ({
   handleSubmit,
   name,
