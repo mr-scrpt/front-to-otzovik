@@ -8,6 +8,8 @@
       "~u/*": ["src/utils/*"],
       "~p/*": ["src/components/pages/*"],
       "~f/*": ["src/components/forms/*"],
+      "~n/*": ["src/components/navigation/*"],
+      "~h/*": ["src/hooks/*"],
 
     }
   },

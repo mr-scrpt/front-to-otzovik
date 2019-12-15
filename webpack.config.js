@@ -106,11 +106,13 @@ module.exports = (env = {}) => {
     resolve: {
       alias: {
         "~": path.resolve(__dirname, "src"),
-        "~c": path.resolve(__dirname, "src/components/"),
-        "~m": path.resolve(__dirname, "src/modules/"),
-        "~u": path.resolve(__dirname, "src/utils/"),
-        "~p": path.resolve(__dirname, "src/components/pages/"),
-        "~f": path.resolve(__dirname, "src/components/forms/")
+        "~c": path.resolve(__dirname, "src/components"),
+        "~m": path.resolve(__dirname, "src/modules"),
+        "~u": path.resolve(__dirname, "src/utils"),
+        "~p": path.resolve(__dirname, "src/components/pages"),
+        "~f": path.resolve(__dirname, "src/components/forms"),
+        "~n": path.resolve(__dirname, "src/components/navigation"),
+        "~h": path.resolve(__dirname, "src/hooks")
       }
     }
   };

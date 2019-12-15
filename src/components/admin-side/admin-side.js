@@ -12,10 +12,10 @@ const AdminSide = ({ match }) => {
       <Route path={`${path}`} component={AdmNavMainList} />
       <Switch>
         <Route path={`${path}`} exact component={AdmMain} />
-        <Route path={`${path}/regions`} component={AdmRegion} />
-        <Route path={`${path}/users`} render={() => <div>Юзеры</div>} />
-        <Route path={`${path}/persons`} render={() => <div>Персоны</div>} />
-        <Route path={`${path}/tails`} render={() => <div>Истории</div>} />
+        <Route path={`${path}regions`} component={AdmRegion} />
+        <Route path={`${path}users`} render={() => <div>Юзеры</div>} />
+        <Route path={`${path}persons`} render={() => <div>Персоны</div>} />
+        <Route path={`${path}tails`} render={() => <div>Истории</div>} />
         }/>
       </Switch>
     </>
