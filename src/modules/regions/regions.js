@@ -8,7 +8,7 @@ import {
 const list = handleActions(
   {
     [fetchRegionsListRequest]: () => [],
-    [fetchRegionsListSuccess]: (_, action) => action.payload,
+    [fetchRegionsListSuccess]: (_, action) => action.payload.data,
     [fetchRegionsListFailure]: () => []
   },
   []
@@ -16,21 +16,13 @@ const list = handleActions(
 
 const error = handleActions(
   {
-    [fetchRegionsListRequest]: () => ({ status: 200, message: "ok" }),
-    [fetchRegionsListSuccess]: () => ({ status: 200, message: "ok" }),
+    [fetchRegionsListRequest]: () => ({}),
+    [fetchRegionsListSuccess]: () => ({}),
     [fetchRegionsListFailure]: (_, action) => ({ ...action.payload })
   },
-  { status: 200, message: "ok" }
+  {}
 );
 
-/* const loading = handleActions(
-  {
-    [fetchRegionsListRequest]: () => true,
-    [fetchRegionsListSuccess]: () => false,
-    [fetchRegionsListFailure]: () => false
-  },
-  false
-); */
 export default combineReducers({
   list,
   error

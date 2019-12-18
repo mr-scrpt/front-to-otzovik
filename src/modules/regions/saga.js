@@ -62,8 +62,6 @@ export function* updRegionBD({ payload }) {
 }
 
 export function* deleteRegionBD({ payload }) {
-  console.log(payload);
-
   yield put(yield isLoading(true));
   try {
     yield deleteRegion(payload);

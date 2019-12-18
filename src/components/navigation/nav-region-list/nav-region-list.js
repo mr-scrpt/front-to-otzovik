@@ -3,9 +3,6 @@ import useRegions from "~h/useRegions";
 import { Link } from "react-router-dom";
 const NavRegionList = ({ match }) => {
   const regions = useRegions();
-  console.log(match);
-  console.log(regions);
-
   return (
     <ul>
       {regions &&

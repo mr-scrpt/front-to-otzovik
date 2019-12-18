@@ -9,7 +9,6 @@ const request = ({ url, method, headers, data }) =>
       if (result.status !== 200) {
         throw new Error(result);
       }
-      console.log(result);
 
       resolve(result);
     } catch (e) {

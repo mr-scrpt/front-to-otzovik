@@ -12,7 +12,7 @@ const AdmNavMainList = ({ match }) => {
     <nav>
       {list &&
         list.map(({ path, title }, idx) => (
-          <Link to={`${match.path}${path}`} key={path}>
+          <Link to={`${match.path}/${path}`} key={path}>
             {title}
           </Link>
         ))}

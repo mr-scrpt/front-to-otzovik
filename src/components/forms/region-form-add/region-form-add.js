@@ -12,7 +12,7 @@ import FieldFileStandart from "~f/field-file-standart";
 import validatorStandart from "~f/validator-standart";
 import { fetchRegionAddRequest } from "~m/regions/";
 
-let RegionForm = ({
+let RegionFormAdd = ({
   handleSubmit,
   name,
   flag,
@@ -47,12 +47,12 @@ let RegionForm = ({
   );
 };
 
-RegionForm = reduxForm({
+RegionFormAdd = reduxForm({
   form: "selectingFormValues",
   multipartForm: true,
   validate: validatorStandart,
   enableReinitialize: true
-})(RegionForm);
+})(RegionFormAdd);
 
 const selector = formValueSelector("selectingFormValues");
 
@@ -65,6 +65,6 @@ const mapDispatchToProps = {
   reset
 };
 
-RegionForm = connect(mapStateToProps, mapDispatchToProps)(RegionForm);
+RegionFormAdd = connect(mapStateToProps, mapDispatchToProps)(RegionFormAdd);
 
-export default RegionForm;
+export default RegionFormAdd;

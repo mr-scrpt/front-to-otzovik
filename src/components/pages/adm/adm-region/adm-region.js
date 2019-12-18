@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 import { fetchRegionsListRequest } from "~m/regions";
-import RegionForm from "~f/region-form";
+import RegionFormAdd from "~/components/forms/region-form-add";
 import RegionList from "~c/adm/region-list";
 const AdmRegion = props => {
   useEffect(() => {
@@ -17,13 +17,13 @@ const AdmRegion = props => {
     <>
       {regionsList.length && <RegionList list={regionsList} />}
 
-      <RegionForm />
+      <RegionFormAdd />
     </>
   );
 };
 
 const mapStateToProps = ({ regions }) => ({
-  regionsList: regions.list.data
+  regionsList: regions.list
 });
 const mapDispatchToProps = {
   fetchRegionsListRequest

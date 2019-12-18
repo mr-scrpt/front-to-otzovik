@@ -11,7 +11,7 @@ const GeneralSide = props => {
       <header className="header">Хдер</header>
       <hr />
       <nav className="nav">
-        <Route path={`${path}`} component={NavRegionList} />
+        <Route path={`/`} component={NavRegionList} />
       </nav>
       <hr />
       <main className="main">

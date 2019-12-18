@@ -7,7 +7,7 @@ const App = () => {
   return (
     <>
       <Switch>
-        <Route path={`/admin/`} component={AdminSide} />
+        <Route path={`/admin`} component={AdminSide} />
         {/*  <Route path={`/`} component={GeneralSide} /> */}
 
         <Route path={`/`} component={GeneralSide} />
