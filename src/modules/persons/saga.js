@@ -21,7 +21,7 @@ import { isLoading } from "../loading";
 import { addPerson, getPersons } from "./api";
 function* fetchWatcher() {
   yield takeLatest(fetchPersonsAddRequest, addPersonsDB);
-  yield takeEvery(fetchPersonsListRequest, getPersonsDB);
+  yield takeLatest(fetchPersonsListRequest, getPersonsDB);
 }
 
 export function* getPersonsDB({ payload }) {

@@ -29,13 +29,17 @@ const error = handleActions(
 
 const sort = handleActions(
   {
-    [fetchPersonsListSortRequest]: (state, action) => action.payload
+    [fetchPersonsListSortRequest]: (state, action) => ({
+      ...state.sort,
+      ...action.payload
+    })
   },
   {
-    limit: 10,
+    limit: 5,
     currentPage: 1,
     sortField: "name",
-    sortDir: "asc"
+    sortDir: "asc",
+    search: ""
   }
 );
 export default combineReducers({

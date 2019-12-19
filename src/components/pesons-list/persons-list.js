@@ -1,19 +1,11 @@
 import React from "react";
 import usePersons from "~h/usePersons";
 
-const PersonsList = () => {
-  /* const personsList = usePersons({
-    limit: 2,
-    currentPage: 1,
-    sortField: "name",
-    sortDir: "asc"
-  }); */
-  const personsList = usePersons();
-
-  if (personsList && personsList.length) {
+const PersonsList = ({ list }) => {
+  if (list && list.length) {
     return (
       <ul>
-        {personsList.map(
+        {list.map(
           ({ _id, name, lastname, middlename, published, avatar, alias }) => (
             <div key={_id}>
               <h3>{name}</h3>
